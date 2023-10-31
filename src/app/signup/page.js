@@ -1,7 +1,9 @@
 "use client"
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function Home() {
+  const router = useRouter();
 
 	const [formData, setFormData] = useState({
     firstName: '',
@@ -20,6 +22,11 @@ export default function Home() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
     console.log(formData)
+    // const isOk = userSingUp(formData) sign up user
+    const isOk = true
+    if (isOk) {
+      router.push("/")
+    }  
   };
 
 	return (
@@ -42,9 +49,10 @@ export default function Home() {
 								placeholder="Jane"
 								value={formData.firstName}
 								onChange={handleInputChange}
+                required
               />
             </div>
-						<p className="text-red-500 text-xs italic">Please fill out this field.</p>
+            {formData.firstName === '' && (<p className="text-red-500 text-xs italic">Please fill out this field.</p>)}
           </div>
 
           <div>

@@ -1,8 +1,17 @@
 "use client"
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const isSignIn = sessionStorage.getItem('user') 
+    if(isSignIn){
+      router.push("/kitchen")
+    }
+  })
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -15,7 +24,13 @@ export default function Home() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
-    console.log(formData)
+    // const isOk = userSingIn(formData) sign in user
+    const isOk = true
+    if (isOk) {
+      // set user session
+      sessionStorage.setItem('user', JSON.stringify({...formData, userId : "id_12345"}))
+      location.reload();
+    } 
   };
   
   return (
@@ -51,7 +66,7 @@ export default function Home() {
                 Password
               </label>
               <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500" onClick={() => alert("for beautifulness")}>
                   Forgot password?
                 </a>
               </div>
