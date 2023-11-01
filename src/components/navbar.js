@@ -49,7 +49,6 @@ export default function navbar({showFull}) {
 										<a href="/ticket" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Ticket</a>
 									</>
 								)}
-								
 								</div>
 							</div>
 						</div>
@@ -83,10 +82,14 @@ export default function navbar({showFull}) {
 				{isMobileMenuOpen && (
 				<div className="sm:hidden" id="mobile-menu">
 					<div className="space-y-1 px-2 pb-3 pt-2">
-						<a href="#" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</a>
-						<a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Team</a>
-						<a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</a>
-						<a href="#" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+						<a href="/kitchen" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
+						{showFull && (
+							<>
+								<a href="/menu" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Menu</a>
+								<a href="/queue" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Queue</a>
+								<a href="/ticket" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Ticket</a>
+							</>
+						)}
 					</div>
 				</div>
 				)}
