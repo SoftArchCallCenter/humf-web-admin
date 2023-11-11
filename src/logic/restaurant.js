@@ -27,10 +27,12 @@ const getRestaurantByUserId = async (userId) => {
 
 const addRestaurant = async (createRestaurantDto) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${RESTAURANT_URL}`,{
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify(createRestaurantDto),
         })

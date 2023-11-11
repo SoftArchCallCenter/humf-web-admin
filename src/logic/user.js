@@ -58,14 +58,15 @@ const login = async (loginUserDto) => {
 const logout = async () => {
     try{
         const access_token = sessionStorage.getItem("access_token")
-        // console.log(access_token)
         const respone = await fetch(`${AUTH_URL}/logout`, {
             method: "POST",
             headers: {
-                "authorization": `Bearer ${access_token}`
+                "Authorization": `Bearer ${access_token}`,
             }
         });
+        console.log(respone)
         const result = await respone.json();
+        console.log(result)
         if (!respone.ok) {
             return {err:true, result: null};
         } else {
