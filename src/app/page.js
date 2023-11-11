@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
+import { login } from "@/logic/user"
 
 export default function Home() {
   const router = useRouter();
@@ -25,12 +26,17 @@ export default function Home() {
 	const handleSubmit = (e) => {
 		e.preventDefault()
     // const isOk = userSingIn(formData) sign in user
-    const isOk = true
-    if (isOk) {
-      // set user session
-      sessionStorage.setItem('user', JSON.stringify({...formData, userId : 5}))
-      location.reload();
-    } 
+    login(formData).then(({err,result}) => {
+      console.log({err,result})
+      if (!err){
+        sessionStorage.setItem("access_token", result.access_token)
+        sessionStorage.setItem("refresh_token", result.refresh_token)
+        // TODO: get userId
+        const userId = 5
+        sessionStorage.setItem('user', JSON.stringify({userId}))
+        location.reload();
+      }
+    })
   };
   
   return (
