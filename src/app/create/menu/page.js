@@ -28,9 +28,9 @@ export default function Home() {
   const handleSubmit = (e) => {
 		e.preventDefault()
     console.log(formData)
-    createMenu({resId, ...formData}).then((result) => {
-      if (!result.err){
-        console.log(result.result)
+    createMenu({resId, ...formData}).then(({err, result}) => {
+      if (!err){
+        console.log(result)
         router.push("/menu")
       }
     })

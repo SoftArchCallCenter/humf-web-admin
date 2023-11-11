@@ -14,22 +14,22 @@ export default function Home() {
 		const userId = getUserId(router)
     const resId = getResId(router)
 
-		consumeQueue(resId).then((result) => {
+		consumeQueue(resId).then(({err, result}) => {
       // console.log(result)
-			if(result.err){
+			if(err){
 				console.log("error")
 				setCurrentOrder(null)
 			} else {
-				console.log(result.result)
-				setCurrentOrder(result.result)
+				console.log(result)
+				setCurrentOrder(result)
 			}
 		})
 	},[])
 
   const handleOrder = (accept) => {
     const resId = getResId(router)
-    acceptOrder({accept, resId}).then((result) => {
-      if(result.err){
+    acceptOrder({accept, resId}).then(({err, result}) => {
+      if(err){
         console.log("error")
       } else {
         alert(`you ${(accept)?"accept":"decline"} this order`)

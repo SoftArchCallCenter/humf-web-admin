@@ -12,13 +12,13 @@ export default function Home() {
 	useEffect(() => {
 		const userId = getUserId(router)
 
-		getRestaurantByUserId(userId).then((result) => {
-			if(result.err){
+		getRestaurantByUserId(userId).then(({err, result}) => {
+			if(err){
 				console.log("error")
 				setRestaurant(null)
 			} else {
-				console.log(result.result)
-				setRestaurant(result.result)
+				console.log(result)
+				setRestaurant(result)
 			}
 		})
 
@@ -33,8 +33,8 @@ export default function Home() {
 	},[restaurant])
 
 	const removeRestaurant = (resId) => {
-		deleteRestaurant(resId).then((result) => {
-			if (result.err){
+		deleteRestaurant(resId).then(({err, result}) => {
+			if (err){
 				console.log("error")
 			} else {
 				location.reload();

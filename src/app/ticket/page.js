@@ -36,8 +36,8 @@ export default function Home() {
   },[ticketList])
 
   const handleFinish = (ticketId) => {
-    updateTicket({ticketId, status: "finished"}).then((result) => {
-      if(result.err){
+    updateTicket({ticketId, status: "finished"}).then(({err, result}) => {
+      if(err){
 				console.log("error")
 			} else {
 				alert(`you finished ticket ${ticketId}`)

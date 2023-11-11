@@ -14,13 +14,13 @@ export default function Home() {
 		const userId = getUserId(router)
     const resId = getResId(router)
 
-    getAllMenuByRestaurant(resId).then((result) => {
-			if(result.err){
+    getAllMenuByRestaurant(resId).then(({err, result}) => {
+			if(err){
 				console.log("error")
 				setMenuList(null)
 			} else {
-				console.log(result.result)
-				setMenuList(result.result.Menu)
+				console.log(result)
+				setMenuList(result.Menu)
 			}
 		})
 
@@ -28,8 +28,8 @@ export default function Home() {
 
   const handleRemoveMenu = (menuId) => {
     console.log(menuId)
-    deleteMenu(menuId).then((result) => {
-      if (result.err){
+    deleteMenu(menuId).then(({err, result}) => {
+      if (err){
 				console.log("error")
 			} else {
 				location.reload();

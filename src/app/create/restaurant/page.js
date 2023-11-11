@@ -28,9 +28,9 @@ export default function Home() {
 
   const handleSubmit = (e) => {
 		e.preventDefault()
-    addRestaurant({userId, ...formData}).then((result) => {
-      if (!result.err){
-        console.log(result.result)
+    addRestaurant({userId, ...formData}).then(({err, result}) => {
+      if (!err){
+        console.log(result)
         router.push("/kitchen")
       }
     })
