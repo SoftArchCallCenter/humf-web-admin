@@ -1,4 +1,4 @@
-const getUserId = async (router) => {
+const getUserId = (router) => {
     const user = sessionStorage.getItem('user')
     if (user){
         return JSON.parse(user).userId

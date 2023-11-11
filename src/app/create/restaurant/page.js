@@ -17,8 +17,8 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     address: '',
-    openTime: null,
-    closeTime: null,
+    openTime: undefined,
+    closeTime: undefined,
   });
 
   const handleInputChange = (e) => {
@@ -48,7 +48,7 @@ export default function Home() {
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-sky-200">
+              <label htmlFor="name" className="block text-sm font-medium leading-6 text-sky-200">
                 Name
               </label>
               <div className="mt-2">
@@ -65,11 +65,9 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-sky-200">
-                  Address
-                </label>
-              </div>
+              <label htmlFor="address" className="block text-sm font-medium leading-6 text-sky-200">
+                Address
+              </label>
               <div className="mt-2">
                 <input
                   id="address"
@@ -84,11 +82,9 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-sky-200">
-                  Open Time
-                </label>
-              </div>
+              <label htmlFor="open_time" className="block text-sm font-medium leading-6 text-sky-200">
+                Open Time
+              </label>
               <div className="mt-2">
                 <input
                   id="open_time"
@@ -103,11 +99,9 @@ export default function Home() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label htmlFor="password" className="block text-sm font-medium leading-6 text-sky-200">
-                  Close Time
-                </label>
-              </div>
+              <label htmlFor="close_time" className="block text-sm font-medium leading-6 text-sky-200">
+                Close Time
+              </label>
               <div className="mt-2">
                 <input
                   id="close_time"

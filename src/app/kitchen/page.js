@@ -24,6 +24,14 @@ export default function Home() {
 
 	},[])
 
+	useEffect(() => {
+		if (restaurant){
+			sessionStorage.setItem("resId", restaurant.id)
+		} else {
+			sessionStorage.removeItem("resId")
+		}
+	},[restaurant])
+
 	const removeRestaurant = (resId) => {
 		deleteRestaurant(resId).then((result) => {
 			if (result.err){
