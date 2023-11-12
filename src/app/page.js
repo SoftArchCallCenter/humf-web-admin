@@ -1,13 +1,13 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { login } from "@/logic/user"
+import { login, getUserId } from "@/logic/user"
 
 export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const isSignIn = sessionStorage.getItem('user') 
+    const isSignIn = getUserId()
     if(isSignIn){
       router.push("/kitchen")
     }
@@ -31,10 +31,9 @@ export default function Home() {
       if (!err){
         sessionStorage.setItem("access_token", result.access_token)
         sessionStorage.setItem("refresh_token", result.refresh_token)
-        // TODO: get userId
-        const userId = 5
-        sessionStorage.setItem('user', JSON.stringify({userId}))
         location.reload();
+      } else {
+        alert(`invalid email or password`)
       }
     })
   };
@@ -51,7 +50,7 @@ export default function Home() {
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="email" className="block text-sm font-medium leading-6 text-sky-200">
-              Email address
+              Email
             </label>
             <div className="mt-2">
               <input

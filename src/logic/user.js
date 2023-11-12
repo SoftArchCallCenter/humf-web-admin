@@ -3,9 +3,16 @@ import { API_GATEWAY_URL } from "@/variable";
 const AUTH_URL = `${API_GATEWAY_URL}/auth`
 
 const getUserId = (router) => {
-    const user = sessionStorage.getItem('user')
-    if (user){
-        return JSON.parse(user).userId
+    const access_token = sessionStorage.getItem("access_token")
+    if (access_token){
+        const result = JSON.parse(Buffer.from(access_token.split('.')[1], 'base64').toString());
+        if (result.sub){
+            return result.sub
+        } else {
+            alert("please sign in")
+            router.push("/")
+            return 
+        }
     } else {
         alert("please sign in")
         router.push("/")

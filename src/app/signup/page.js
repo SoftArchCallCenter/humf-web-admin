@@ -21,8 +21,6 @@ export default function Home() {
 		e.preventDefault()
     signup(formData).then(({err,result}) => {
       if (!err){
-        sessionStorage.setItem("access_token", result.access_token)
-        sessionStorage.setItem("refresh_token", result.refresh_token)
         router.push("/")
       }
     })

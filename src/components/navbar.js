@@ -21,7 +21,7 @@ export default function navbar({showFull}) {
 		logout().then(({err,result}) => {
 			if (!err){
 			  sessionStorage.clear();
-        router.push("/")
+        	  router.push("/")
 			}
 		})
 	}
