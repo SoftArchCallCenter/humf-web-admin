@@ -7,7 +7,7 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    const isSignIn = getUserId()
+    const isSignIn = sessionStorage.getItem("access_token")
     if(isSignIn){
       router.push("/kitchen")
     }
