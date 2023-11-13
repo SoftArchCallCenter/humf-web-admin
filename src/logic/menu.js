@@ -1,6 +1,6 @@
 import { API_GATEWAY_URL } from "@/variable";
 
-const MENU_URL = `${API_GATEWAY_URL}/menus`
+const MENU_URL = `${API_GATEWAY_URL}/menu`
 
 const getAllMenuByRestaurant = async (resId) => {
     try{
