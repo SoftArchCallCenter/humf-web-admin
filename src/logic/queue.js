@@ -4,8 +4,12 @@ const QUEUE_URL = `${API_GATEWAY_URL}/queue`
 
 const consumeQueue = async (resId) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${QUEUE_URL}/${resId}`, {
             method: "GET",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
         });
         const result = await respone.json();
         if (!respone.ok) {
@@ -26,10 +30,14 @@ const consumeQueue = async (resId) => {
 
 const acceptOrder = async (acceptOrderDto) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${QUEUE_URL}/accept`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                headers: {
+                    "Authorization": `Bearer ${access_token}`,
+                }
             },
             body: JSON.stringify(acceptOrderDto),
         });

@@ -50,8 +50,12 @@ const addRestaurant = async (createRestaurantDto) => {
 
 const deleteRestaurant = async (resId) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${RESTAURANT_URL}/${resId}`,{
             method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
         })
         const result = await respone.json();
         if (!respone.ok) {

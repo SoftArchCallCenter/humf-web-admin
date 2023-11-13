@@ -21,10 +21,14 @@ const getAllMenuByRestaurant = async (resId) => {
 
 const createMenu = async (createMenuDto) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${MENU_URL}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                headers: {
+                    "Authorization": `Bearer ${access_token}`,
+                }
             },
             body: JSON.stringify(createMenuDto),
         });
@@ -42,8 +46,12 @@ const createMenu = async (createMenuDto) => {
 
 const deleteMenu = async (menuId) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${MENU_URL}/${menuId}`, {
             method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
         });
         const result = await respone.json();
         if (!respone.ok) {

@@ -71,9 +71,9 @@ const logout = async () => {
                 "Authorization": `Bearer ${access_token}`,
             }
         });
-        console.log(respone)
+        // console.log(respone)
         const result = await respone.json();
-        console.log(result)
+        // console.log(result)
         if (!respone.ok) {
             return {err:true, result: null};
         } else {

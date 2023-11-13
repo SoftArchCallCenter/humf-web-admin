@@ -4,8 +4,12 @@ const KITCHEN_URL = `${API_GATEWAY_URL}/kitchen`
 
 const getTickets = async (resId) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${KITCHEN_URL}/${resId}`, {
             method: "GET",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
         });
         const result = await respone.json();
         if (!respone.ok) {
@@ -24,10 +28,14 @@ const getTickets = async (resId) => {
 
 const updateTicket = async ({ticketId, status}) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${KITCHEN_URL}/${ticketId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
+                headers: {
+                    "Authorization": `Bearer ${access_token}`,
+                }
             },
             body: JSON.stringify({status}),
         });
