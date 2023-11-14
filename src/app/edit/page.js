@@ -121,7 +121,7 @@ export default function Home() {
     }
     return (
 		<main className="min-h-screen flex-col justify-between">
-			<Navbar showFull = {true} profile_url = {profile_url}/>
+			<Navbar showFull = {false} profile_url = {profile_url}/>
 			{homePage(formData)}
 		</main>
 		

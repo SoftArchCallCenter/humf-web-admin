@@ -82,7 +82,7 @@ export default function Home() {
 	}
 	return (
 		<main className="min-h-screen flex-col justify-between">
-			<Navbar showFull = {user} profile_url = {user && user.profilePictureUrl}/>
+			<Navbar showFull = {false} profile_url = {user && user.profilePictureUrl}/>
 			{homePage(user)}
 		</main>
 		

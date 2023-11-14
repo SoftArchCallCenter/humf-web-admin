@@ -51,7 +51,7 @@ export default function Home() {
 
     return (
 		<main className="min-h-screen flex-col justify-between">
-			<Navbar showFull = {true} profile_url = {profile_url}/>
+			<Navbar showFull = {false} profile_url = {profile_url}/>
       <div className="mt-10 flex items-center justify-center">
         <div className="p-6 border border-gray-200 rounded-lg shadow bg-gray-800 border-gray-700 flex flex-col items-center justify-center">
           <div style={{
@@ -80,25 +80,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-      
-      {/* <div className="w-[320px] grid gap-2 mt-20 sm:mx-auto sm:w-full sm:max-w-sm">
-          <div className="h-24 cursor-pointer relative flex justify-center items-center border-2 rounded-md bg-blue-700">
-              <input type="file" name="file" onChange={imageHandler} className="z-20 opacity-0 cursor-pointer h-full w-full" />
-              <div className="absolute flex justify-center items-center gap-2">
-                  <img className={`h-10 w-10 rounded-full ${checkFile?'opacity-1':'opacity-0'}`} src={selectedFile ? URL.createObjectURL(selectedFile) : null} />
-                  <span className="text-[18px] w-56 truncate">{checkFile?selectedFile.name:'Choose a file'}</span>
-              </div>    
-          </div>
-          <button onClick={imagesubmission} className="w-full h-14 bg-green-600 text-white rounded-md">Upload</button>
-      </div> */}
-      {/* <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-        <div>
-          <a href="/home" className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800">
-            Cancel
-            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-          </a>
-        </div>
-      </div> */}
 		</main>
 	)
 };
