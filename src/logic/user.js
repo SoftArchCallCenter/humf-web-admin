@@ -1,6 +1,8 @@
 import { API_GATEWAY_URL } from "@/variable";
 
 const AUTH_URL = `${API_GATEWAY_URL}/auth`
+const USER_URL = `${API_GATEWAY_URL}/user`
+const IMAGE_URL = `${API_GATEWAY_URL}/image`
 
 const getUserId = (router) => {
     const access_token = sessionStorage.getItem("access_token")
@@ -85,9 +87,93 @@ const logout = async () => {
     } 
 }
 
+const getUserById = async (userId) => {
+    
+    try{
+        const access_token = sessionStorage.getItem("access_token")
+        const respone = await fetch(`${USER_URL}/${userId}`, {
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
+        });
+        const result = await respone.json();
+        if (!respone.ok) {
+            return {err:true, result: null};
+        } else {
+            return {err:false, result};
+        }
+
+    } catch (error) {
+        console.log(error)
+        return {err:true, result: null};
+    }
+    
+}
+
+const editUser  = async (userId, UpdateUserDto) => {
+    try{
+        const entries = Object.entries(UpdateUserDto);
+        const filteredEntries = entries.filter(([key, value]) => value !== '');
+        UpdateUserDto = Object.fromEntries(filteredEntries);
+        const access_token = sessionStorage.getItem("access_token")
+        const respone = await fetch(`${USER_URL}/${userId}`, {
+            method: "PATCH",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+                "Content-Type": "application/json",
+            }, body: JSON.stringify(UpdateUserDto),
+        });
+        const result = await respone.json();
+        if (!respone.ok) {
+            return {err:true, result: null};
+        } else {
+            return {err:false, result};
+        }
+
+    } catch (error) {
+        console.log(error)
+        return {err:true, result: null};
+    }
+}
+
+const uploadImage = async (selectedFile, userId) => {
+    try{
+        const formData = new FormData();
+        formData.append('image', selectedFile)
+        const access_token = sessionStorage.getItem("access_token")
+        const respone = await fetch(`${IMAGE_URL}`, {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            },
+            body: formData
+        });
+        const result = await respone.json();
+        console.log(result)
+        if (!respone.ok) {
+            return {err:true, result: null};
+        } else {
+            const {url} = result
+            const value = await editUser(userId, {profilePictureURL: url.url})
+            if (value.err){
+                return {err:true, result: null};
+            } else {
+                return {err:false, result:value.result};
+            }
+        }
+    } catch (error) {
+        console.log(error)
+        return {err:true, result: null};
+    }
+}
+
 module.exports = {
     getUserId,
     signup,
     login,
-    logout
+    logout,
+    getUserById,
+    uploadImage,
+    editUser
 }

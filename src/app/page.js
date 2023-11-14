@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     const isSignIn = sessionStorage.getItem("access_token")
     if(isSignIn){
-      router.push("/kitchen")
+      router.push("/home")
     }
   })
 

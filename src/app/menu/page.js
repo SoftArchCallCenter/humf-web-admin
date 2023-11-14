@@ -9,11 +9,14 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const router = useRouter();
   const [menuList, setMenuList] = useState(null)
+  const [profile_url, setProfile] = useState(null)
 
   useEffect(() => {
 		const userId = getUserId(router)
     const resId = getResId(router)
-
+    const profile = sessionStorage.getItem("profile_url")
+    setProfile(profile)
+    
     getAllMenuByRestaurant(resId).then(({err, result}) => {
 			if(err){
 				console.log("error")
@@ -74,7 +77,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen flex-col justify-between">
-      <Navbar />
+      <Navbar profile_url = {profile_url}/>
       <div className="text-right relative">
         <a href="/create/menu" className="bg-blue-700 hover:bg-blue-900 text-gray-50 px-4 py-2 rounded absolute top-4 right-[5%] sm:right-[10%] md:right-[15%] lg:right-[20%] flex items-center">
           <svg className="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

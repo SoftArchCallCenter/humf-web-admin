@@ -3,15 +3,17 @@ import Navbar from "@/components/navbar"
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation";
 import { deleteRestaurant, getRestaurantByUserId } from "@/logic/restaurant";
-import { getUserId } from "@/logic/user";
+import { getUserId, getUserById } from "@/logic/user";
 
 export default function Home() {
 	const router = useRouter();
 	const [restaurant, setRestaurant] = useState(null)
+	const [profile_url, setProfile] = useState(null)
 
 	useEffect(() => {
 		const userId = getUserId(router)
-
+		const profile = sessionStorage.getItem("profile_url")
+		setProfile(profile)
 		getRestaurantByUserId(userId).then(({err, result}) => {
 			if(err){
 				console.log("error")
@@ -78,7 +80,7 @@ export default function Home() {
 	}
 	return (
 		<main className="min-h-screen flex-col justify-between">
-			<Navbar showFull = {restaurant}/>
+			<Navbar showFull = {restaurant} profile_url = {profile_url}/>
 			{homePage(restaurant)}
 		</main>
 		
