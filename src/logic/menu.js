@@ -4,8 +4,12 @@ const MENU_URL = `${API_GATEWAY_URL}/menu`
 
 const getAllMenuByRestaurant = async (resId) => {
     try{
+        const access_token = sessionStorage.getItem("access_token")
         const respone = await fetch(`${MENU_URL}/res/${resId}`, {
             method: "GET",
+            headers: {
+                "Authorization": `Bearer ${access_token}`,
+            }
         });
         const result = await respone.json();
         if (!respone.ok) {
@@ -26,9 +30,7 @@ const createMenu = async (createMenuDto) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                headers: {
-                    "Authorization": `Bearer ${access_token}`,
-                }
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify(createMenuDto),
         });

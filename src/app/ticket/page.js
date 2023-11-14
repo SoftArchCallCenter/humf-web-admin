@@ -17,13 +17,15 @@ export default function Home() {
     const resId = getResId(router)
 		
     getTickets(resId).then(({err,result}) => {
-      // console.log(result)
 			if(err){
 				console.log("error")
 				setTicketList(null)
 			} else {
-				console.log(result.tickets)
-				setTicketList(result.tickets)
+        if (result){
+          setTicketList(result.tickets)
+        } else {
+          setTicketList(null)
+        }
 			}
 		})
 	},[])

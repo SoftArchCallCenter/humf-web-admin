@@ -35,9 +35,7 @@ const acceptOrder = async (acceptOrderDto) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                headers: {
-                    "Authorization": `Bearer ${access_token}`,
-                }
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify(acceptOrderDto),
         });

@@ -33,9 +33,7 @@ const updateTicket = async ({ticketId, status}) => {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
-                headers: {
-                    "Authorization": `Bearer ${access_token}`,
-                }
+                "Authorization": `Bearer ${access_token}`,
             },
             body: JSON.stringify({status}),
         });
